@@ -1,7 +1,15 @@
 # My_Exercises
-Repository with some of my exercises/solutions in Python, R and SQL.
 
+This Repository mainly contains exercises with solutions in Python, R and SQL. 
 
-In this repository you can find a variety of exercises en Python (using Jupyter Notebook), R (using R Studio) and SQL queries (in Jupyter Notebook, etc).
-
-1. Data Analysis with Python
+Python:
+  1. Data Analysis
+  2. ML 
+  3. Data Visualization
+  
+R:
+  1. 
+  
+  
+SQL:
+  1. 
