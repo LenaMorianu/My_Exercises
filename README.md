@@ -6,6 +6,7 @@ Python:
   1. Data Analysis
   2. ML 
   3. Data Visualization
+  4. API (NBA)
   
 R:
   1. 
