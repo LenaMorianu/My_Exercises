@@ -1,0 +1,212 @@
+---
+title: "Assignment 3 - Markdown(final)"
+author: "Lena M"
+date: "03/08/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Preguntas 
+
+## Pregunta 1
+
+Realizad los siguientes productos de matrices siguiente en `R`:
+
+$$A\cdot B$$ 
+$$B\cdot A$$ 
+$$(A\cdot B)^{t}$$
+$$B^t\cdot A$$
+$$(A\cdot B)^{-1}$$
+$$A^{-1}\cdot B^{t}$$
+donde 
+$$A = \begin{pmatrix}1 & 2 & 3 & 4 \\4 & 3 & 2 & 1 \\0 & 1 & 0 & 2 \\3 & 0 & 4 & 0 \end{pmatrix}\ \ \ \ \ \ \ \ \ \ B = \begin{pmatrix}4 & 3 & 2 & 1 \\0 & 3 & 0 & 4 \\1 & 2 & 3 & 4 \\0 & 1 & 0 & 2\end{pmatrix}$$
+
+Finalmente, escribe haciendo uso de \LaTeX\ el resultado de los dos primeros productos de forma adecuada.
+
+
+## Solución:
+
+### En `R`
+
+$$ $$
+```{r Producto1, echo=FALSE, comment=NA}
+A = rbind(c(1,2,3,4),c(4,3,2,1),c(0,1,0,2),c(3,0,4,0))
+B = rbind(c(4,3,2,1),c(0,3,0,4),c(1,2,3,4),c(0,1,0,2))
+
+Producto1 = A%*%B
+print("El resultado A*B es:")
+Producto1
+
+```
+ $$ $$
+```{r Producto2, echo = FALSE, comment = NA}
+
+Producto2 = B%*%A
+print("El resultado B*A es:")
+Producto2
+
+```
+$$ $$
+
+
+```{r Producto3, echo = FALSE, comment = NA}
+
+t=3
+Producto3 = mtx.exp(A%*%B,t)
+print(paste(sprintf("El resultado de (A*B) elevado a la potencia %i es: ",t)))
+Producto3 
+
+``` 
+
+
+$$ $$
+```{r Producto4, echo= FALSE, comment = NA}
+t=2
+Producto4 = (mtx.exp(B,t))%*%A
+print(paste(sprintf("El resultado del producto B elevado a la potencia %i y A es: ", t)))
+Producto4
+
+``` 
+$$ $$
+?solve()
+```{r Producto5, echo=FALSE, comment=NA}
+
+Producto5 = round(solve(Producto1),3)
+print("El resultado del producto A*B elevado a la potencia -1 es:")
+Producto5
+
+```
+$$ $$
+```{r Producto6, echo=FALSE, comment = NA}
+
+t=5
+Producto6 = round(solve(A)%*%(B%^%t),3)
+print(paste(sprintf("El resultado del producto A elevado a la potencia -1, y B elevado a la potencia %i es:", t)))
+Producto6
+
+```
+$$ $$
+### En LaTeX
+
+El resultado del producto $A\cdot B:$ 
+
+$$A\cdot B = \begin{pmatrix}1 & 2 & 3 & 4 \\4 & 3 & 2 & 1 \\0 & 1 & 0 & 2 \\3 & 0 & 4 & 0 \end{pmatrix}\cdot\begin{pmatrix}4 & 3 & 2 & 1 \\0 & 3 & 0 & 4 \\1 & 2 & 3 & 4 \\0 & 1 & 0 & 2\end{pmatrix}=\begin{pmatrix}7 & 19 & 11 & 29\\ 18 & 26 & 14 & 26\\0 & 5 & 0 & 8\\16 & 17 & 18 & 19\end{pmatrix}$$
+
+
+El resultado del producto $B\cdot A:$
+
+$$B\cdot A = \begin{pmatrix}4 & 3 & 2 & 1 \\0 & 3 & 0 & 4 \\1 & 2 & 3 & 4 \\0 & 1 & 0 & 2\end{pmatrix}\cdot\begin{pmatrix}1 & 2 & 3 & 4 \\4 & 3 & 2 & 1 \\0 & 1 & 0 & 2 \\3 & 0 & 4 & 0 \end{pmatrix} = \begin{pmatrix}19 & 19 & 22 & 23 \\24 & 9 & 22 & 3 \\21 & 11 & 23 & 12 \\10 & 3 & 10 & 1\end{pmatrix}$$
+
+## Pregunta 2
+
+Considerad en un vector los números de vuestro DNI y llamadlo dni. Por ejemplo, si vuestro DNI es 54201567K, vuestro vector será
+$$ dni = (5,4,2,0,1,5,6,7)$$
+
+Definid el vector en `R`. Calculad con `R` el vector dni al cuadrado, la raíz cuadrada del vector dni y, por último, la suma de todas las cifras del vector dni.
+
+Finalmente, escribid todos estos vectores también en \LaTeX.
+
+
+## Solución
+
+### En `R`
+
+$$ $$
+```{r vector_dni, echo = FALSE, comment= NA}
+dni = c(5,0,9,0,9,0,2,0)
+
+print(paste(sprintf("El vector dni = (%i,%i,%i,%i,%i,%i,%i,%i)",dni[1],dni[2],dni[3],dni[4],dni[5],dni[6],dni[7],dni[8])))
+
+```
+
+
+```{r dni_al_cuadrado, echo = FALSE, comment = NA}
+
+cuadr = function(x){x^2}
+cuadrado = cuadr(dni)
+
+print(paste(sprintf("El vector dni al cuadrado = (%i,%i,%i,%i,%i,%i,%i,%i)",cuadrado[1],cuadrado[2],cuadrado[3],cuadrado[4],cuadrado[5],cuadrado[6],cuadrado[7],cuadrado[8])))
+
+```
+
+
+```{r dni_raiz_cuadrada, echo = FALSE, comment = NA}
+
+raiz_cuadr = function(x){round((sqrt(x)),3)}
+raiz = raiz_cuadr(dni)
+
+print(paste(sprintf("La raíz cuadrada del vector dni = (%s,%s,%s,%s,%s,%s,%s,%s)",raiz[1],raiz[2],raiz[3],raiz[4],raiz[5],raiz[6],raiz[7], raiz[8])))
+
+```
+
+
+```{r suma, echo = FALSE, comment = NA}
+
+print(paste(sprintf("La suma de todas las cifras del vector dni es %i", sum(dni))))
+
+```   
+$$ $$
+### En \LaTeX
+
+El vector  dni es: $\ \ \overrightarrow{dni} = (5,0,9,0,9,0,2,0)$
+
+
+El vector dni al cuadrado es: $\ \ \overrightarrow{dni^2}$ = (`r dni^2`)
+
+
+La raíz cuadrada del vector dni es: $\ \ \sqrt{\overrightarrow{dni}}$ = (`r round(sqrt(dni),3)`)
+
+## Pregunta 3
+
+Considerad el vector de las letras de vuestro nombre y apellido. Llamadlo name. Por ejemplo, en mi caso sería $$ nombre = (M,A,R,I,A,S,A,N,T,O,S)$$
+
+Definid dicho vector en `R`. Calculad el subvector que solo contenga vuestro nombre. Calculad también el subvector que contenga solo vuestro apellido. Ordenadlo alfabéticamente. Cread una matriz con este vector.
+
+Redactad todos vuestros resultados y utilizad \LaTeX  cuando pertoque.
+
+
+## Solución
+
+### En `R`
+
+$$ $$
+```{r nombre, echo=FALSE, comment=NA}
+
+nombre = c("L","E","N","A","M","O","R","I","A","N","U")
+print(paste(sprintf("El vector nombre =(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", nombre[1],nombre[2],nombre[3],nombre[4],nombre[5],nombre[6],nombre[7],nombre[8],nombre[9],nombre[10],nombre[11])))
+
+```
+
+```{r nombre_solo, echo=FALSE, comment=NA}
+
+print(paste(sprintf("El vector solo_nombre =(%s,%s,%s,%s)", nombre[1],nombre[2],nombre[3],nombre[4])))
+
+```
+
+
+```{r apellido_solo, echo=FALSE, comment=NA}
+
+print(paste(sprintf("El vector solo_apellido =(%s,%s,%s,%s,%s,%s,%s)", nombre[5],nombre[6],nombre[7],nombre[8],nombre[9],nombre[10],nombre[11])))
+
+```
+
+
+```{r ordenado,echo=FALSE, comment=NA}
+
+ordenado = sort(nombre)
+print(paste(sprintf("El vector nombre ordenado alfabéticamante = (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",ordenado[1], ordenado[2], ordenado[3], ordenado[4], ordenado[5], ordenado[6],ordenado[7],ordenado[8],ordenado[9],ordenado[10],ordenado[11])))
+
+```
+
+
+```{r matriz, echo=FALSE, comment=NA}
+
+matriz = rbind(ordenado[1:3],ordenado[4:6],ordenado[7:9],ordenado[10:11])
+matriz
+
+```
+
+
+
